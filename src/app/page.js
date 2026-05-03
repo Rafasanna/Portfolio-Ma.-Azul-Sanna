@@ -190,6 +190,14 @@ export default function Home() {
         {/* ESTIMULACION SECTION */}
         <section id="estimulacion" className={`section fade-in delay-3`}>
           <div className={styles.rehabSection}>
+            <div style={{ display: "flex", justifyContent: "center", marginBottom: "1rem" }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img 
+                src="/cognitiva_verde.png" 
+                alt="Ilustración de estimulación cognitiva" 
+                style={{ width: "150px", height: "auto", mixBlendMode: "multiply", opacity: 0.8 }}
+              />
+            </div>
             <h3 className="title">
               Estimulación cognitiva y motora
             </h3>
