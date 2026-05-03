@@ -4,7 +4,7 @@ export default function Home() {
   const ocupaciones = [
     { num: 1, title: "Actividades de la vida diaria", desc: "Alimentación, Vestido, Higiene y arreglo personal, etc." },
     { num: 2, title: "Acts. Instrumentales", desc: "Cuidado de otros, gestión financiera, movilidad en la comunidad, etc." },
-    { num: 3, title: "Manejo de la salud", desc: "" },
+    { num: 3, title: "Manejo de la salud", desc: "Actividades relacionadas con el Desarrollo, gestión y mantenimiento de rutinas de salud y bienestar" },
     { num: 4, title: "Descanso y sueño", desc: "" },
     { num: 5, title: "Educación", desc: "" },
     { num: 6, title: "Trabajo", desc: "" },
@@ -44,16 +44,15 @@ export default function Home() {
         {/* HERO SECTION */}
         <section id="quien-soy" className={`${styles.hero} fade-in delay-1`}>
           <div className={styles.heroContent}>
-            <h1>Hola! Mi nombre es <br/>Ma. Azul Sanna</h1>
+            <h1>Hola! Mi nombre es <br />Ma. Azul Sanna</h1>
             <h2 style={{ marginBottom: "0.2rem" }}>Lic. en Terapia Ocupacional</h2>
             <h3 style={{ marginTop: 0, marginBottom: "1.5rem" }}>ᴍ.ɴ 𝟧𝟤𝟫𝟫 ᴍ.ᴘ 𝟣𝟩𝟥𝟣𝟧</h3>
             <p>
-              Me dicen Azu, y creé este espacio para acercar la terapia ocupacional a quienes la necesitan, acompañando cada proceso desde la escucha, el respeto y la individualidad.
-    
+              Creé este espacio para acercar la profesión a quienes la necesitan y también a quienes todavía no la conocen.
+
             </p>
             <p>
-              Cada tratamiento es único. Trabajo de manera personalizada, teniendo en cuenta tus necesidades, tu rutina y tus objetivos reales.
-              Busco que cada avance se traduzca en mejoras concretas en tu vida diaria.
+              Trabajo de manera individual y grupal en consultorio, acompañando cada proceso para que puedas lograr mayor autonomía e independencia en las actividades de la vida diaria.
             </p>
             <ul>
               <li>Terapia de mano </li>
@@ -63,9 +62,9 @@ export default function Home() {
           </div>
           <div className={styles.heroImageContainer}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img 
-              src="/perfil.jpg" 
-              alt="Ma. Azul Sanna" 
+            <img
+              src="/perfil.jpg"
+              alt="Ma. Azul Sanna"
               className={styles.profileImage}
               style={{ width: "100%", maxWidth: "400px", height: "auto" }}
             />
@@ -92,11 +91,11 @@ export default function Home() {
 
         {/* OCUPACIONES SECTION */}
         <section id="ocupaciones" className={`section fade-in delay-3`}>
-          <h3 className="title">¿Qué son las ocupaciones<br/>y cuáles son?</h3>
+          <h3 className="title">¿Qué son las ocupaciones<br />y cuáles son?</h3>
           <p className="subtitle">
             Son actividades significativas que las personas realizan a diario, tanto individualmente como en grupo, para dar sentido y propósito a su vida.
           </p>
-          
+
           <div className={styles.ocupacionesGrid}>
             {ocupaciones.map((item) => (
               <div key={item.num} className={styles.card}>
@@ -115,26 +114,26 @@ export default function Home() {
           <div className={styles.rehabSection}>
             <div style={{ display: "flex", justifyContent: "center", marginBottom: "1rem" }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img 
-                src="/mano_verde.png" 
-                alt="Ilustración de mano" 
+              <img
+                src="/mano_verde.png"
+                alt="Ilustración de mano"
                 style={{ width: "150px", height: "auto", mixBlendMode: "multiply", opacity: 0.8 }}
               />
             </div>
             <h3 className="title">
               Rehabilitación de Mano
               <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: "inline-block", verticalAlign: "middle", marginLeft: "12px", marginBottom: "6px" }}>
-                <path d="M18 11V6a2 2 0 0 0-4 0v4"/>
-                <path d="M14 10V4a2 2 0 0 0-4 0v6"/>
-                <path d="M10 10.5V3a2 2 0 0 0-4 0v9"/>
-                <path d="m7 15-1.76-1.76a2 2 0 0 0-2.83 2.82l3.6 3.6C7.5 21.14 9.2 22 12 22h2a8 8 0 0 0 8-8V7a2 2 0 1 0-4 0v5"/>
+                <path d="M18 11V6a2 2 0 0 0-4 0v4" />
+                <path d="M14 10V4a2 2 0 0 0-4 0v6" />
+                <path d="M10 10.5V3a2 2 0 0 0-4 0v9" />
+                <path d="m7 15-1.76-1.76a2 2 0 0 0-2.83 2.82l3.6 3.6C7.5 21.14 9.2 22 12 22h2a8 8 0 0 0 8-8V7a2 2 0 1 0-4 0v5" />
               </svg>
-              <br/>y Miembro Superior
+              <br />y Miembro Superior
             </h3>
-            <p className="subtitle" style={{marginBottom: "20px"}}>
+            <p className="subtitle" style={{ marginBottom: "20px" }}>
               Recuperación funcional de personas con lesiones traumáticas, quirúrgicas y degenerativas.
             </p>
-            
+
             <div className={styles.rehabList}>
               {rehabItems.map((item, index) => (
                 <div key={index} className={styles.rehabItem}>
@@ -157,15 +156,15 @@ export default function Home() {
             <h3 className="title">
               Habilidades Motoras
               <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: "inline-block", verticalAlign: "middle", marginLeft: "12px", marginBottom: "6px" }}>
-                <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/>
-                <path d="m15 5 4 4"/>
+                <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z" />
+                <path d="m15 5 4 4" />
               </svg>
-              <br/>y Escolares
+              <br />y Escolares
             </h3>
-            <p className="subtitle" style={{marginBottom: "20px"}}>
+            <p className="subtitle" style={{ marginBottom: "20px" }}>
               Acompañamiento en desafíos del aprendizaje, escritura y autonomía.
             </p>
-            
+
             <div className={styles.rehabList}>
               {motorasItems.map((item, index) => (
                 <div key={index} className={styles.rehabItem}>
@@ -194,7 +193,7 @@ export default function Home() {
               </svg>
               <span>+54 9 3446 525525</span>
             </a>
-            
+
             <a href="mailto:mazulsanna.to@gmail.com" className={styles.contactLink}>
               <svg className={styles.contactIcon} width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
