@@ -22,10 +22,10 @@ export default function Home() {
   ];
 
   const motorasItems = [
-    "Intervención en habilidades motoras: postura, coordinacion, fuerza de miembro superior, etc ",
-    "Fuerza de miembro superior, etc ",
-    "Dificultad en la motricidad gruesa y fina.",
-    "Entrenamiento en AVD."
+    "Intervención en habilidades motoras: postura, coordinación y fuerza de miembro superior, etc.",
+    "Abordaje de la atención y la organización.",
+    "Intervención en motricidad fina y gruesa.",
+    "Entrenamiento en autonomía e independencia en las AVD."
   ];
 
   return (
@@ -161,15 +161,15 @@ export default function Home() {
               />
             </div>
             <h3 className="title">
-              Habilidades Motoras
+              Niños en edad escolar
               <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: "inline-block", verticalAlign: "middle", marginLeft: "12px", marginBottom: "6px" }}>
                 <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z" />
                 <path d="m15 5 4 4" />
               </svg>
-              <br />y Escolares
+              <br />con desafíos en el aprendizaje
             </h3>
             <p className="subtitle" style={{ marginBottom: "20px" }}>
-              Acompañamiento en desafíos del aprendizaje, escritura y autonomía.
+              Intervenciones orientadas a favorecer la escritura funcional y mejorar el desempeño escolar y cotidiano.
             </p>
 
             <div className={styles.rehabList}>
