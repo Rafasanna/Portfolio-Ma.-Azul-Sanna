@@ -2,7 +2,7 @@ import styles from "./page.module.css";
 
 export default function Home() {
   const ocupaciones = [
-    { num: 1, title: "Actividades de la vida diaria", desc: "Alimentación, vestido, higiene y arreglo personal, etc." },
+    { num: 1, title: "Actividades de la vida diaria (AVD)", desc: "Alimentación, vestido, higiene y arreglo personal, etc." },
     { num: 2, title: "Acts. Instrumentales", desc: "Cuidado de otros, gestión financiera, movilidad en la comunidad, etc." },
     { num: 3, title: "Manejo de la salud", desc: "Actividades relacionadas con el desarrollo, gestión y mantenimiento de rutinas de salud y bienestar" },
     { num: 4, title: "Descanso y sueño", desc: "" },
