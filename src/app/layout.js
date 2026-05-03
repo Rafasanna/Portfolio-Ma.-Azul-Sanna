@@ -8,6 +8,7 @@ const montserrat = Montserrat({
 });
 
 export const metadata = {
+  metadataBase: new URL("https://licmazulsanna.com"),
   title: "Azul Sanna | Terapeuta Ocupacional",
   description:
     "Portfolio de Azul Sanna, Terapeuta Ocupacional especializada en rehabilitación de mano y miembro superior.",
@@ -19,15 +20,24 @@ export const metadata = {
     siteName: "Azul Sanna",
     images: [
       {
-        url: "/preview.jpg", // 👈 esta imagen la creás vos
+        url: "/preview.jpg",
         width: 1200,
         height: 630,
+        alt: "Azul Sanna | Terapeuta Ocupacional",
       },
     ],
     locale: "es_AR",
     type: "website",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Azul Sanna | Terapeuta Ocupacional",
+    description:
+      "Acompaño procesos de rehabilitación para que vuelvas a hacer lo que te hace bien.",
+    images: ["/preview.jpg"],
+  },
 };
+
 
 export default function RootLayout({ children }) {
   return (
