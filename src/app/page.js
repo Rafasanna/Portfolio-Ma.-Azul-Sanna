@@ -46,7 +46,7 @@ export default function Home() {
           <a href="#quien-soy" className={styles.navItem}>Quién soy</a>
           <a href="#que-es" className={styles.navItem}>¿Qué es la T.O.?</a>
           <a href="#ocupaciones" className={styles.navItem}>Ocupaciones</a>
-          <a href="#rehabilitacion" className={styles.navItem}>Ab. Terapéuticos</a>
+          <a href="#rehabilitacion" className={styles.navItem}>Ab. Terapéutico</a>
         </div>
       </nav>
 
