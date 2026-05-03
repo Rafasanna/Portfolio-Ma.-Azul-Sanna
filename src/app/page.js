@@ -120,14 +120,7 @@ export default function Home() {
               />
             </div>
             <h3 className="title">
-              Rehabilitación de Mano
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: "inline-block", verticalAlign: "middle", marginLeft: "12px", marginBottom: "6px" }}>
-                <path d="M18 11V6a2 2 0 0 0-4 0v4" />
-                <path d="M14 10V4a2 2 0 0 0-4 0v6" />
-                <path d="M10 10.5V3a2 2 0 0 0-4 0v9" />
-                <path d="m7 15-1.76-1.76a2 2 0 0 0-2.83 2.82l3.6 3.6C7.5 21.14 9.2 22 12 22h2a8 8 0 0 0 8-8V7a2 2 0 1 0-4 0v5" />
-              </svg>
-              <br />y Miembro Superior
+              Rehabilitación de Mano<br />y Miembro Superior
             </h3>
             <p className="subtitle" style={{ marginBottom: "20px" }}>
               Recuperación funcional de personas con lesiones traumáticas, quirúrgicas y degenerativas.
@@ -161,12 +154,7 @@ export default function Home() {
               />
             </div>
             <h3 className="title">
-              Niños en edad escolar
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: "inline-block", verticalAlign: "middle", marginLeft: "12px", marginBottom: "6px" }}>
-                <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z" />
-                <path d="m15 5 4 4" />
-              </svg>
-              <br />con desafíos en el aprendizaje
+              Niños en edad escolar<br />con desafíos en el aprendizaje
             </h3>
             <p className="subtitle" style={{ marginBottom: "20px" }}>
               Intervenciones orientadas a favorecer la escritura funcional y mejorar el desempeño escolar y cotidiano.
