@@ -378,6 +378,14 @@
     padding-top: 120px;
   }
   
+  .heroContent h1 {
+    font-size: 2.2rem;
+  }
+
+  .heroContent h2 {
+    font-size: 1.2rem;
+  }
+  
   .heroContent li::before {
     left: 50%;
     transform: translateX(-50%) translateX(-120px);
