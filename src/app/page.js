@@ -2,16 +2,16 @@ import styles from "./page.module.css";
 
 export default function Home() {
   const ocupaciones = [
-    { num: 1, title: "Actividades de la vida diaria", desc: "Alimentación, Vestido, Higiene y arreglo personal, etc." },
+    { num: 1, title: "Actividades de la vida diaria", desc: "Alimentación, vestido, higiene y arreglo personal, etc." },
     { num: 2, title: "Acts. Instrumentales", desc: "Cuidado de otros, gestión financiera, movilidad en la comunidad, etc." },
-    { num: 3, title: "Manejo de la salud", desc: "Actividades relacionadas con el Desarrollo, gestión y mantenimiento de rutinas de salud y bienestar" },
+    { num: 3, title: "Manejo de la salud", desc: "Actividades relacionadas con el desarrollo, gestión y mantenimiento de rutinas de salud y bienestar" },
     { num: 4, title: "Descanso y sueño", desc: "" },
     { num: 5, title: "Educación", desc: "" },
     { num: 6, title: "Trabajo", desc: "" },
     { num: 7, title: "Juego", desc: "" },
     { num: 8, title: "Ocio y Tiempo libre", desc: "" },
     { num: 9, title: "Participación social", desc: "" }
-  ];
+  ];  
 
   const rehabItems = [
     "Fractura de dedos, mano, muñeca y antebrazo.",
@@ -43,7 +43,7 @@ export default function Home() {
     <>
       <nav className={styles.navbar}>
         <div className={styles.navContainer}>
-          <a href="#quien-soy" className={styles.navItem}>Quién soy</a>
+          <a href="#quien-soy" className={styles.navItem}>Quien soy</a>
           <a href="#que-es" className={styles.navItem}>¿Qué es la T.O.?</a>
           <a href="#ocupaciones" className={styles.navItem}>Ocupaciones</a>
           <a href="#rehabilitacion" className={styles.navItem}>Ab. Terapéutico</a>
@@ -134,7 +134,7 @@ export default function Home() {
               Rehabilitación de Mano<br />y Miembro Superior
             </h3>
             <p className="subtitle" style={{ marginBottom: "20px" }}>
-              Recuperación funcional de personas con lesiones traumáticas, quirúrgicas y degenerativas.
+              Acompañamiento en la recuperación funcional de personas con lesiones traumatológicas, patologías reumatológicas y procesos postquirúrgicos.
             </p>
 
             <div className={styles.rehabList}>
