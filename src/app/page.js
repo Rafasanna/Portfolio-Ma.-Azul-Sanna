@@ -28,6 +28,17 @@ export default function Home() {
     "Entrenamiento en autonomía e independencia en las AVD."
   ];
 
+  const estimulacionItems = [
+    "Memoria y atención",
+    "Organización y planificación",
+    "Movimiento",
+    "Lenguaje y escritura",
+    "Toma de decisiones",
+    "Habilidades sociales",
+    "Autoestima",
+    "Ocupaciones significativas"
+  ];
+
   return (
     <>
       <nav className={styles.navbar}>
@@ -167,6 +178,32 @@ export default function Home() {
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <circle cx="12" cy="12" r="10"></circle>
                       <path d="M12 8v4l3 3"></path>
+                    </svg>
+                  </div>
+                  <span className={styles.rehabText}>{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ESTIMULACION SECTION */}
+        <section id="estimulacion" className={`section fade-in delay-3`}>
+          <div className={styles.rehabSection}>
+            <h3 className="title">
+              Estimulación cognitiva y motora
+            </h3>
+            <p className="subtitle" style={{ marginBottom: "20px" }}>
+              Para adultos mayores, abordando:
+            </p>
+
+            <div className={styles.rehabList}>
+              {estimulacionItems.map((item, index) => (
+                <div key={index} className={styles.rehabItem}>
+                  <div className={styles.rehabIcon}>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                      <polyline points="22 4 12 14.01 9 11.01"></polyline>
                     </svg>
                   </div>
                   <span className={styles.rehabText}>{item}</span>
