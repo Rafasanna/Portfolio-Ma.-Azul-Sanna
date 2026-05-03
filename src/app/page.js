@@ -15,11 +15,11 @@ export default function Home() {
 
   const rehabItems = [
     "Fractura de dedos, mano, muñeca y antebrazo.",
-    "Tratamiento de cicatrices.",
-    "Confección de férulas.",
     "Lesiones tendinosas (aparato flexor y extensor), Tenosinovitis Estenosante.",
+    "Artrosis y Artritis.",
     "Deformidades articulares (Cuello de Cisne, Boutonniere, Mallet Finger).",
-    "Artrosis y Artritis."
+    "Tratamiento de cicatrices.",
+    "Confección de férulas."
   ];
 
   const motorasItems = [
