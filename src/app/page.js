@@ -15,15 +15,15 @@ export default function Home() {
 
   const rehabItems = [
     "Fractura de dedos, mano, muñeca y antebrazo.",
-    "Deformidades articulares (Cuello de Cisne, Boutonniere, Mallet Finger).",
-    "Lesiones tendinosas-Artrosis y Artritis. (aparato flexor y extensor), Tenosinovitis Estenosante.",
+    "Artrosis y Artritis-Deformidades articulares (Cuello de Cisne, Boutonniere, Mallet Finger).",
+    "Lesiones tendinosas. (aparato flexor y extensor), Tenosinovitis Estenosante.",
     "Tratamiento de cicatrices.",
     "Confección de férulas."
   ];
 
   const motorasItems = [
-    "Habilidades motoras, postura, coordinación, fuerza de miembro superior, etc.",
-    "Dificultad en la atención y organización.",
+    "Intervención en habilidades motoras: postura, coordinacion, fuerza de miembro superior, etc ",
+    "Fuerza de miembro superior, etc ",
     "Dificultad en la motricidad gruesa y fina.",
     "Entrenamiento en AVD."
   ];
@@ -152,6 +152,14 @@ export default function Home() {
         {/* HABILIDADES SECTION */}
         <section id="habilidades" className={`section fade-in delay-2`}>
           <div className={styles.rehabSection}>
+            <div style={{ display: "flex", justifyContent: "center", marginBottom: "1rem" }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img 
+                src="/habilidades_verde.png" 
+                alt="Ilustración de habilidades motoras" 
+                style={{ width: "150px", height: "auto", mixBlendMode: "multiply", opacity: 0.8 }}
+              />
+            </div>
             <h3 className="title">
               Habilidades Motoras
               <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: "inline-block", verticalAlign: "middle", marginLeft: "12px", marginBottom: "6px" }}>
