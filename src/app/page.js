@@ -250,6 +250,13 @@ export default function Home() {
               </svg>
               <span>@lic.mazulsanna</span>
             </a>
+
+            <a href="https://www.facebook.com/share/1BhLktAA6A/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" className={styles.contactLink}>
+              <svg className={styles.contactIcon} width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+              </svg>
+              <span>Lic. Ma. Azul Sanna</span>
+            </a>
           </div>
           <div>
             <p style={{ fontWeight: 600, fontSize: "1.2rem", marginBottom: "8px" }}>Ma. Azul Sanna</p>
