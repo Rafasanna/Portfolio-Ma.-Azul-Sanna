@@ -47,7 +47,7 @@ export default function Home() {
           <a href="#que-es" className={styles.navItem}>¿Qué es la T.O.?</a>
           <a href="#ocupaciones" className={styles.navItem}>Ocupaciones</a>
           <a href="#rehabilitacion" className={styles.navItem}>Ab. Terapéutico</a>
-          <a href="/reserva-turno" className={styles.navItem}>Reserva tu turno</a>
+          <a href="/reserva-turno" className={styles.navItem}>Reservá tu turno</a>
         </div>
       </nav>
 
