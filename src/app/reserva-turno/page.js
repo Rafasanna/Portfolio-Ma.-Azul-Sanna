@@ -11,7 +11,7 @@ export default function ReservaTurno() {
           <Link href="/#que-es" className={styles.navItem}>¿Qué es la T.O.?</Link>
           <Link href="/#ocupaciones" className={styles.navItem}>Ocupaciones</Link>
           <Link href="/#rehabilitacion" className={styles.navItem}>Ab. Terapéutico</Link>
-          <Link href="/reserva-turno" className={`${styles.navItem} ${styles.navItemActive}`}>Reserva tu turno</Link>
+          <Link href="/reserva-turno" className={`${styles.navItem} ${styles.navItemActive}`}>Reservá tu turno</Link>
         </div>
       </nav>
 
@@ -20,7 +20,7 @@ export default function ReservaTurno() {
           <div className={styles.bookingHeader}>
             <h1 className={`title ${styles.bookingTitle}`}>Reservá tu turno</h1>
             <p className={`subtitle ${styles.bookingIntro}`}>
-              Los horarios disponibles son orientativos. Al seleccionar un turno, vas a ser redirigido/a a WhatsApp para confirmar la reserva.
+              Al seleccionar un turno, vas a ser redirigido/a a WhatsApp para confirmar la reserva.
             </p>
           </div>
 
