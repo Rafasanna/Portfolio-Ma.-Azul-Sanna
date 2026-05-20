@@ -5,6 +5,7 @@ import styles from "../page.module.css";
 
 const WHATSAPP_NUMBER = "5493446525525";
 const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRj9qBH7xTjjcdEQVdffOF0nKm731jXJGAKmbnpD426LaP3uDKo_HRnUPRnGHvZIIEZ-JEjNKKqtm3j/pub?gid=0&single=true&output=csv";
+const TESAI_MAPS_URL = "https://www.google.com/maps/search/?api=1&query=TESAI%20Centro%20Medico%20San%20Juan%201362";
 
 function parseCsvLine(line) {
   const values = [];
@@ -66,8 +67,9 @@ function groupTurnos(rows) {
       return;
     }
 
-    const direccion = row.direccion || "Dirección a confirmar";
-    const maps = row.maps || "";
+    const isTesai = row.lugar.toLowerCase().includes("tesai");
+    const direccion = isTesai ? "San Juan 1362" : row.direccion || "Dirección a confirmar";
+    const maps = isTesai ? TESAI_MAPS_URL : row.maps || "";
     const groupKey = `${row.dia}__${row.lugar}__${direccion}`;
 
     if (!grouped.has(groupKey)) {

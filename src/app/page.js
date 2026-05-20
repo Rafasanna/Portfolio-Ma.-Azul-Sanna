@@ -15,8 +15,8 @@ export default function Home() {
 
   const rehabItems = [
     "Fractura de dedos, mano, muñeca y antebrazo.",
-    "Artrosis y Artritis-Deformidades articulares (Cuello de Cisne, Boutonniere, Mallet Finger).",
-    "Lesiones tendinosas. (aparato flexor y extensor), Tenosinovitis Estenosante.",
+    "Artrosis y Artritis - Deformidades articulares (Cuello de Cisne, Boutonniere, Mallet Finger).",
+    "Lesiones tendinosas (aparato flexor y extensor), Tenosinovitis estenosante.",
     "Tratamiento de cicatrices.",
     "Confección de férulas."
   ];
@@ -82,7 +82,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* QUE ES LA TERAPIA OCUPACIONAL */}
+        {/* QUÉ ES LA TERAPIA OCUPACIONAL */}
         <section id="que-es" className={`section fade-in delay-2`}>
           <h3 className="title">¿Qué es la Terapia Ocupacional?</h3>
           <div className={styles.bubblesContainer}>
@@ -121,7 +121,7 @@ export default function Home() {
         </section>
 
         {/* REHABILITACION SECTION */}
-        <section id="rehabilitacion" className={`section fade-in delay-1`}>
+        <section id="rehabilitación" className={`section fade-in delay-1`}>
           <div className={styles.rehabSection}>
             <div style={{ display: "flex", justifyContent: "center", marginBottom: "1rem" }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -189,7 +189,7 @@ export default function Home() {
         </section>
 
         {/* ESTIMULACION SECTION */}
-        <section id="estimulacion" className={`section fade-in delay-3`}>
+        <section id="estimulación" className={`section fade-in delay-3`}>
           <div className={styles.rehabSection}>
             <div style={{ display: "flex", justifyContent: "center", marginBottom: "1rem" }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -226,7 +226,7 @@ export default function Home() {
       {/* FOOTER / CONTACT */}
       <footer className={styles.footer}>
         <div className="container">
-          <h2 className={`title ${styles.contactTitle}`}>¡Contáctame!</h2>
+          <h2 className={`title ${styles.contactTitle}`}>¡Contactame!</h2>
           <div className={styles.contactInfo}>
             <a href="https://wa.me/5493446525525" target="_blank" rel="noopener noreferrer" className={styles.contactLink}>
               <svg className={styles.contactIcon} width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
