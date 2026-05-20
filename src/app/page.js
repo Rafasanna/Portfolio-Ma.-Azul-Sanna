@@ -47,6 +47,7 @@ export default function Home() {
           <a href="#que-es" className={styles.navItem}>¿Qué es la T.O.?</a>
           <a href="#ocupaciones" className={styles.navItem}>Ocupaciones</a>
           <a href="#rehabilitacion" className={styles.navItem}>Ab. Terapéutico</a>
+          <a href="/reserva-turno" className={styles.navItem}>Reserva tu turno</a>
         </div>
       </nav>
 
@@ -101,7 +102,7 @@ export default function Home() {
 
         {/* OCUPACIONES SECTION */}
         <section id="ocupaciones" className={`section fade-in delay-3`}>
-          <h3 className="title">¿Qué son las ocupaciones<br />y cuáles son?</h3>
+          <h3 className="title">¿Qué son las ocupaciones y cuáles son?</h3>
           <p className="subtitle">
             Son actividades significativas que las personas realizan a diario, tanto individualmente como en grupo, para dar sentido y propósito a su vida.
           </p>
@@ -131,7 +132,7 @@ export default function Home() {
               />
             </div>
             <h3 className="title">
-              Rehabilitación de Mano<br />y Miembro Superior
+              Rehabilitación de Mano y Miembro Superior
             </h3>
             <p className="subtitle" style={{ marginBottom: "20px" }}>
               Acompañamiento en la recuperación funcional de personas con lesiones traumatológicas, patologías reumatológicas y procesos postquirúrgicos.
@@ -165,7 +166,7 @@ export default function Home() {
               />
             </div>
             <h3 className="title">
-              Niños en edad escolar<br />con desafíos en el aprendizaje
+              Niños en edad escolar con desafíos en el aprendizaje
             </h3>
             <p className="subtitle" style={{ marginBottom: "20px" }}>
               Intervenciones orientadas a favorecer la escritura funcional y mejorar el desempeño escolar y cotidiano.

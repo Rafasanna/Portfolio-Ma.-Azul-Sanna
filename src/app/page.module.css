@@ -49,6 +49,10 @@
   width: 100%;
 }
 
+.navItemActive::after {
+  width: 100%;
+}
+
 .hero {
   display: flex;
   align-items: center;
@@ -299,6 +303,199 @@
   color: var(--text-dark);
 }
 
+.bookingSection {
+  scroll-margin-top: 120px;
+  padding: 130px 0 80px;
+}
+
+.bookingHeader {
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.bookingPage {
+  min-height: 100vh;
+}
+
+.bookingTitle {
+  margin-bottom: 14px;
+}
+
+.bookingIntro {
+  margin-bottom: 0;
+}
+
+.bookingGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+  align-items: start;
+  margin-top: 26px;
+}
+
+.bookingState {
+  max-width: 620px;
+  margin: 26px auto 0;
+  padding: 22px 24px;
+  border: 1px solid rgba(139, 162, 130, 0.22);
+  border-radius: 22px;
+  background: linear-gradient(180deg, #fffdf9 0%, #ffffff 100%);
+  box-shadow: 0 18px 45px rgba(94, 122, 91, 0.08);
+  color: var(--text-light);
+  font-size: 0.98rem;
+  font-weight: 600;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.bookingCard {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  background: linear-gradient(180deg, #fffdf9 0%, #ffffff 100%);
+  border: 1px solid rgba(139, 162, 130, 0.22);
+  border-radius: 28px;
+  padding: 24px;
+  box-shadow: 0 18px 45px rgba(94, 122, 91, 0.1);
+}
+
+.bookingDayHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid rgba(139, 162, 130, 0.18);
+}
+
+.bookingDay {
+  color: var(--text-dark);
+  font-size: 1.35rem;
+  font-weight: 800;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.bookingAvailableCount {
+  flex-shrink: 0;
+  border-radius: 999px;
+  background: #eef6ed;
+  color: var(--text-light);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 7px 10px;
+}
+
+.bookingPlace {
+  margin: 18px 0 16px;
+}
+
+.bookingPlace h2 {
+  color: var(--text-dark);
+  font-size: 1rem;
+  line-height: 1.35;
+  margin-bottom: 6px;
+  text-transform: none;
+}
+
+.bookingPlace p {
+  color: var(--text-light);
+  font-size: 0.93rem;
+  line-height: 1.4;
+  margin-bottom: 10px;
+}
+
+.mapButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 7px 12px;
+  background: #f7e5e6;
+  color: #6d5955;
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1.2;
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.mapButton:hover {
+  background: #f2d8da;
+  transform: translateY(-1px);
+}
+
+.mapButtonDisabled {
+  cursor: not-allowed;
+  background: #eeeeea;
+  color: #8a8a82;
+}
+
+.mapButtonDisabled:hover {
+  background: #eeeeea;
+  transform: none;
+}
+
+.scheduleList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.scheduleSlot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  min-height: 48px;
+  border-radius: 16px;
+  padding: 12px 14px;
+  font-size: 0.92rem;
+  line-height: 1.2;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.scheduleSlotAvailable {
+  background: #f3faf1;
+  border: 1px solid rgba(139, 162, 130, 0.32);
+  color: var(--text-dark);
+  box-shadow: 0 8px 18px rgba(94, 122, 91, 0.08);
+}
+
+.scheduleSlotAvailable:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+  box-shadow: 0 12px 24px rgba(94, 122, 91, 0.16);
+}
+
+.scheduleSlotReserved {
+  cursor: not-allowed;
+  background: #f1f1ee;
+  border: 1px solid rgba(95, 95, 88, 0.12);
+  color: #8a8a82;
+  opacity: 0.78;
+}
+
+.scheduleSlotReserved .scheduleTime {
+  text-decoration: line-through;
+}
+
+.scheduleTime {
+  font-weight: 700;
+}
+
+.scheduleStatus {
+  flex-shrink: 0;
+  border-radius: 999px;
+  padding: 5px 9px;
+  background: rgba(255, 255, 255, 0.72);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+}
+
 .footer {
   background: var(--text-dark);
   color: var(--card-bg);
@@ -368,22 +565,30 @@
 
 @media (max-width: 768px) {
   .navContainer {
-    gap: 15px;
-    font-size: 0.85rem;
+    gap: 12px 14px;
+  }
+
+  .navItem {
+    font-size: 0.78rem;
   }
 
   .hero {
     flex-direction: column-reverse;
     text-align: center;
-    padding-top: 120px;
+    padding-top: 145px;
   }
   
   .heroContent h1 {
-    font-size: 2.2rem;
+    font-size: 1.9rem;
+    line-height: 1.2;
   }
 
   .heroContent h2 {
-    font-size: 1.2rem;
+    font-size: 1rem;
+  }
+
+  .heroContent h3 {
+    font-size: 0.9rem;
   }
   
   .heroContent li::before {
@@ -407,5 +612,35 @@
   .rehabItem {
     padding: 16px 20px;
     border-radius: 20px;
+  }
+
+  .bookingSection {
+    scroll-margin-top: 145px;
+    padding: 150px 0 56px;
+  }
+
+  .bookingGrid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    margin-top: 22px;
+  }
+
+  .bookingCard {
+    border-radius: 22px;
+    padding: 20px;
+  }
+
+  .bookingDay {
+    font-size: 1.15rem;
+  }
+
+  .bookingAvailableCount {
+    font-size: 0.68rem;
+  }
+
+  .scheduleSlot {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 7px;
   }
 }
