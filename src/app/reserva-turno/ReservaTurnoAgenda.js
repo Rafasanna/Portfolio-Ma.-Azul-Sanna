@@ -95,7 +95,7 @@ function groupTurnos(rows) {
 }
 
 function getWhatsappTurnoUrl(dia, horaInicio, horaFin, lugar) {
-  const message = `Hola Azul, quiero consultar por el turno del día ${dia} de ${horaInicio} a ${horaFin} en ${lugar}.`;
+  const message = `Hola Ma. Azul, quiero consultar por el turno del día ${dia} de ${horaInicio} a ${horaFin}hs en ${lugar}`;
 
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 }
