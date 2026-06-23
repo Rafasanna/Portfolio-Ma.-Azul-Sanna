@@ -4,8 +4,18 @@ import { useEffect, useState } from "react";
 import styles from "../page.module.css";
 
 const WHATSAPP_NUMBER = "5493446525525";
-const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRj9qBH7xTjjcdEQVdffOF0nKm731jXJGAKmbnpD426LaP3uDKo_HRnUPRnGHvZIIEZ-JEjNKKqtm3j/pub?gid=0&single=true&output=csv";
-const TESAI_MAPS_URL = "https://www.google.com/maps/search/?api=1&query=TESAI%20Centro%20Medico%20San%20Juan%201362";
+const DEFAULT_SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRj9qBH7xTjjcdEQVdffOF0nKm731jXJGAKmbnpD426LaP3uDKo_HRnUPRnGHvZIIEZ-JEjNKKqtm3j/pub?gid=0&single=true&output=csv";
+const SHEET_CSV_URL = process.env.NEXT_PUBLIC_TURNOS_CSV_URL || DEFAULT_SHEET_CSV_URL;
+
+function normalizeHeader(header) {
+  return header
+    .replace(/^\uFEFF/, "")
+    .trim()
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/\s+/g, "_");
+}
 
 function parseCsvLine(line) {
   const values = [];
@@ -47,7 +57,7 @@ function parseCSV(text) {
     return [];
   }
 
-  const headers = parseCsvLine(headerLine).map((header) => header.replace(/^\uFEFF/, "").toLowerCase());
+  const headers = parseCsvLine(headerLine).map(normalizeHeader);
 
   return rows.map((row) => {
     const values = parseCsvLine(row);
@@ -67,9 +77,8 @@ function groupTurnos(rows) {
       return;
     }
 
-    const isTesai = row.lugar.toLowerCase().includes("tesai");
-    const direccion = isTesai ? "San Juan 1362" : row.direccion || "Dirección a confirmar";
-    const maps = isTesai ? TESAI_MAPS_URL : row.maps || "";
+    const direccion = row.direccion || "Dirección a confirmar";
+    const maps = row.maps || "";
     const groupKey = `${row.dia}__${row.lugar}__${direccion}`;
 
     if (!grouped.has(groupKey)) {
@@ -82,7 +91,7 @@ function groupTurnos(rows) {
       });
     }
 
-    const estadoNormalizado = row.estado.trim().toLowerCase();
+    const estadoNormalizado = (row.estado || "").trim().toLowerCase();
 
     grouped.get(groupKey).horarios.push({
       horaInicio: row.hora_inicio,
@@ -92,6 +101,12 @@ function groupTurnos(rows) {
   });
 
   return Array.from(grouped.values());
+}
+
+function addCacheBuster(url) {
+  const separator = url.includes("?") ? "&" : "?";
+
+  return `${url}${separator}t=${Date.now()}`;
 }
 
 function getWhatsappTurnoUrl(dia, horaInicio, horaFin, lugar) {
@@ -113,7 +128,7 @@ export default function ReservaTurnoAgenda() {
           throw new Error("Falta configurar la URL pública del CSV de Google Sheets.");
         }
 
-        const response = await fetch(`${SHEET_CSV_URL}&t=${Date.now()}`);
+        const response = await fetch(addCacheBuster(SHEET_CSV_URL));
 
         if (!response.ok) {
           throw new Error("No se pudo leer el CSV publicado.");
@@ -121,8 +136,6 @@ export default function ReservaTurnoAgenda() {
 
         const csvText = await response.text();
         const data = parseCSV(csvText);
-        console.log("CSV recibido:", csvText);
-        console.log("Turnos parseados:", data);
         const groupedTurnos = groupTurnos(data);
 
         if (!groupedTurnos.length) {
