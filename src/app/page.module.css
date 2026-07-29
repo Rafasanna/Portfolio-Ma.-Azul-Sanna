@@ -106,8 +106,32 @@
 .heroImageContainer {
   flex: 1;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.heroBookingButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+  border-radius: 999px;
+  padding: 9px 18px;
+  background: var(--accent);
+  box-shadow: 0 8px 18px rgba(94, 122, 91, 0.22);
+  color: var(--card-bg);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.35px;
+  text-transform: uppercase;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+.heroBookingButton:hover {
+  background: var(--text-light);
+  box-shadow: 0 11px 24px rgba(94, 122, 91, 0.3);
+  transform: translateY(-2px);
 }
 
 .profileImage {
@@ -316,6 +340,7 @@
 
 .bookingPage {
   min-height: 100vh;
+  max-width: 1440px;
 }
 
 .bookingTitle {
@@ -328,7 +353,7 @@
 
 .bookingGrid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 22px;
   align-items: start;
   margin-top: 26px;
@@ -561,6 +586,36 @@
 .credits span {
   color: var(--accent);
   font-weight: bold;
+}
+
+@media (max-width: 1200px) {
+  .bookingGrid {
+    gap: 14px;
+  }
+
+  .bookingCard {
+    padding: 18px;
+  }
+
+  .bookingDayHeader {
+    gap: 8px;
+  }
+
+  .bookingDay {
+    font-size: 1.1rem;
+  }
+
+  .bookingAvailableCount {
+    font-size: 0.68rem;
+    padding: 6px 8px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .bookingGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+  }
 }
 
 @media (max-width: 768px) {

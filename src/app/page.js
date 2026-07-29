@@ -1,3 +1,4 @@
+import Link from "next/link";
 import styles from "./page.module.css";
 
 export default function Home() {
@@ -47,7 +48,7 @@ export default function Home() {
           <a href="#que-es" className={styles.navItem}>¿Qué es la T.O.?</a>
           <a href="#ocupaciones" className={styles.navItem}>Ocupaciones</a>
           <a href="#rehabilitacion" className={styles.navItem}>Ab. Terapéutico</a>
-          <a href="/reserva-turno" className={styles.navItem}>Reservá tu turno</a>
+          <Link href="/reserva-turno" className={styles.navItem}>Reservá tu turno</Link>
         </div>
       </nav>
 
@@ -72,6 +73,9 @@ export default function Home() {
             </ul>
           </div>
           <div className={styles.heroImageContainer}>
+            <Link href="/reserva-turno" className={styles.heroBookingButton}>
+              Reservá turno
+            </Link>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/perfil.jpg"
