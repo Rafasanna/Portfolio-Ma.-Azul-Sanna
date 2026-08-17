@@ -5,11 +5,13 @@ import { useEffect, useRef, useState } from "react";
 import styles from "./page.module.css";
 
 const SLIDES = [
+  // Foto original
   {
     src: "/perfil.jpg",
     alt: "Ma. Azul Sanna, licenciada en Terapia Ocupacional",
     objectPosition: "center 35%",
   },
+  // TESAI — las dos fotos aparecen juntas
   {
     src: "/carousel/tesai-exterior.jpeg",
     alt: "Exterior de TESAI Centro Médico",
@@ -20,6 +22,7 @@ const SLIDES = [
     alt: "Consultorio de Terapia Ocupacional en TESAI",
     objectPosition: "center 58%",
   },
+  // CENI — las dos fotos aparecen juntas
   {
     src: "/carousel/ceni-recepcion.jpeg",
     alt: "Recepción de CENI Neurología Infantil",
@@ -30,6 +33,7 @@ const SLIDES = [
     alt: "Consultorio de Terapia Ocupacional en CENI",
     objectPosition: "center",
   },
+  // Otros Caminos — las dos fotos aparecen juntas
   {
     src: "/carousel/otros-caminos-recepcion.jpeg",
     alt: "Recepción de Otros Caminos",

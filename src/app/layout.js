@@ -41,7 +41,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="es" className={`${montserrat.variable}`}>
+    <html lang="es" className={`${montserrat.variable}`} data-scroll-behavior="smooth">
       <body>
         {children}
         <Analytics />

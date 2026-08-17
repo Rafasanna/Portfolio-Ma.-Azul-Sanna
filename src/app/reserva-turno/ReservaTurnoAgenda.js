@@ -6,32 +6,48 @@ import styles from "../page.module.css";
 import { groupTurnos, parseCSV } from "./turnos";
 
 const WHATSAPP_NUMBER = "5493446525525";
+const PLACE_CAROUSEL_INTERVAL = 3600;
 const DEFAULT_SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRj9qBH7xTjjcdEQVdffOF0nKm731jXJGAKmbnpD426LaP3uDKo_HRnUPRnGHvZIIEZ-JEjNKKqtm3j/pub?gid=0&single=true&output=csv";
 const SHEET_CSV_URL = process.env.NEXT_PUBLIC_TURNOS_CSV_URL || DEFAULT_SHEET_CSV_URL;
 
 const PLACE_IMAGES = {
-  ceniRecepcion: {
-    src: "/carousel/ceni-recepcion.jpeg",
-    alt: "Recepción de CENI Neurología Infantil",
-    objectPosition: "center 43%",
-  },
-  tesai: {
-    src: "/carousel/tesai-exterior.jpeg",
-    alt: "Exterior de TESAI Centro Médico",
-    objectPosition: "center 43%",
-  },
-  otrosCaminos: {
-    src: "/carousel/otros-caminos-recepcion.jpeg",
-    alt: "Recepción de Otros Caminos",
-    objectPosition: "center 40%",
-  },
+  ceni: [
+    {
+      src: "/carousel/ceni-recepcion.jpeg",
+      alt: "Recepción de CENI Neurología Infantil",
+    },
+    {
+      src: "/carousel/ceni-consultorio.jpeg",
+      alt: "Consultorio de Terapia Ocupacional en CENI",
+    },
+  ],
+  tesai: [
+    {
+      src: "/carousel/tesai-exterior.jpeg",
+      alt: "Exterior de TESAI Centro Médico",
+    },
+    {
+      src: "/carousel/tesai-consultorio.jpeg",
+      alt: "Consultorio de Terapia Ocupacional en TESAI",
+    },
+  ],
+  otrosCaminos: [
+    {
+      src: "/carousel/otros-caminos-recepcion.jpeg",
+      alt: "Recepción de Otros Caminos",
+    },
+    {
+      src: "/carousel/otros-caminos-consultorio.jpeg",
+      alt: "Consultorio de Terapia Ocupacional en Otros Caminos",
+    },
+  ],
 };
 
-function getPlaceImage(lugar) {
+function getPlaceImages(lugar) {
   const lugarNormalizado = lugar.trim().toLowerCase();
 
   if (lugarNormalizado.includes("ceni")) {
-    return PLACE_IMAGES.ceniRecepcion;
+    return PLACE_IMAGES.ceni;
   }
 
   if (lugarNormalizado.includes("tesai")) {
@@ -42,7 +58,7 @@ function getPlaceImage(lugar) {
     return PLACE_IMAGES.otrosCaminos;
   }
 
-  return null;
+  return [];
 }
 
 function addCacheBuster(url) {
@@ -55,6 +71,70 @@ function getWhatsappTurnoUrl(dia, horaInicio, horaFin, lugar) {
   const message = `Hola Ma. Azul, quiero consultar por el turno del día ${dia} de ${horaInicio} a ${horaFin}hs en ${lugar}`;
 
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+}
+
+function PlaceCarousel({ images, placeName }) {
+  const [activeImage, setActiveImage] = useState(0);
+
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (images.length < 2 || prefersReducedMotion) {
+      return undefined;
+    }
+
+    const intervalId = window.setInterval(() => {
+      setActiveImage((currentImage) => (currentImage + 1) % images.length);
+    }, PLACE_CAROUSEL_INTERVAL);
+
+    return () => window.clearInterval(intervalId);
+  }, [images.length]);
+
+  return (
+    <div
+      className={styles.bookingPlaceCarousel}
+      role="region"
+      aria-roledescription="carrusel"
+      aria-label={`Fotos de ${placeName}`}
+    >
+      <div className={styles.bookingPlaceImage}>
+        {images.map((placeImage, imageIndex) => (
+          <div
+            key={placeImage.src}
+            className={`${styles.bookingPlaceSlide} ${
+              imageIndex === activeImage ? styles.bookingPlaceSlideActive : ""
+            }`}
+            aria-hidden={imageIndex !== activeImage}
+          >
+            <Image
+              src={placeImage.src}
+              alt={placeImage.alt}
+              fill
+              sizes="(max-width: 768px) calc(100vw - 88px), (max-width: 1000px) 45vw, 280px"
+              className={styles.bookingPlacePhoto}
+            />
+          </div>
+        ))}
+      </div>
+
+      {images.length > 1 && (
+        <div className={styles.bookingPlaceDots}>
+          {images.map((placeImage, imageIndex) => (
+            <button
+              key={placeImage.src}
+              type="button"
+              className={`${styles.bookingPlaceDot} ${
+                imageIndex === activeImage ? styles.bookingPlaceDotActive : ""
+              }`}
+              onClick={() => setActiveImage(imageIndex)}
+              aria-label={`Mostrar foto ${imageIndex + 1} de ${placeName}`}
+              aria-current={imageIndex === activeImage ? "true" : undefined}
+            />
+          ))}
+        </div>
+      )}
+    </div>
+  );
 }
 
 export default function ReservaTurnoAgenda() {
@@ -125,7 +205,7 @@ export default function ReservaTurnoAgenda() {
   return (
     <div className={styles.bookingGrid}>
       {turnos.map((diaTurnos) => {
-        const placeImage = getPlaceImage(diaTurnos.lugar);
+        const placeImages = getPlaceImages(diaTurnos.lugar);
 
         return (
           <article key={`${diaTurnos.dia}-${diaTurnos.lugar}`} className={styles.bookingCard}>
@@ -136,17 +216,8 @@ export default function ReservaTurnoAgenda() {
               </span>
             </div>
 
-            {placeImage && (
-              <div className={styles.bookingPlaceImage}>
-                <Image
-                  src={placeImage.src}
-                  alt={placeImage.alt}
-                  fill
-                  sizes="(max-width: 768px) calc(100vw - 88px), (max-width: 1000px) 45vw, 320px"
-                  className={styles.bookingPlacePhoto}
-                  style={{ objectPosition: placeImage.objectPosition }}
-                />
-              </div>
+            {placeImages.length > 0 && (
+              <PlaceCarousel images={placeImages} placeName={diaTurnos.lugar} />
             )}
 
             <div className={styles.bookingPlace}>

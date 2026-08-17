@@ -135,7 +135,8 @@
   transform: translateY(-2px);
 }
 
-.heroCarousel {
+.heroCarousel,
+.heroPortrait {
   position: relative;
   width: 100%;
   max-width: 400px;
@@ -147,6 +148,10 @@
   user-select: none;
   transition: all 0.5s ease;
   animation: float 6s ease-in-out infinite;
+}
+
+.heroPortrait {
+  animation: none;
 }
 
 .carouselSlide {
@@ -217,80 +222,206 @@
   50% { transform: translateY(10px); opacity: 1; }
 }
 
-.ocupacionesGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 24px;
-  margin-top: 48px;
+.occupationsSection {
+  scroll-margin-top: 84px;
 }
 
-.card {
-  background: var(--card-bg);
-  border-radius: 30px;
-  padding: 32px 24px;
-  text-align: center;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.03);
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+.occupationsShell {
   position: relative;
+  width: min(1160px, calc(100vw - 48px));
+  margin-left: 50%;
+  padding: 76px 68px 68px;
   overflow: hidden;
-  height: 100%;
+  border: 1px solid rgba(86, 111, 83, 0.1);
+  border-radius: 52px;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(255, 255, 255, 0.94) 0, rgba(255, 255, 255, 0) 34%),
+    linear-gradient(145deg, #e5eee2 0%, #edf3e9 52%, #e4eee1 100%);
+  box-shadow: 0 32px 80px rgba(66, 88, 64, 0.12);
+  transform: translateX(-50%);
 }
 
-.card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 20px 40px rgba(126, 156, 122, 0.2);
-}
-
-.card::before {
-  content: '';
+.occupationsShell::before,
+.occupationsShell::after {
+  content: "";
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, transparent, rgba(139, 162, 130, 0.05));
-  opacity: 0;
-  transition: opacity 0.3s;
+  pointer-events: none;
+  border: 1px solid rgba(94, 122, 91, 0.12);
+  border-radius: 50%;
 }
 
-.card:hover::before {
-  opacity: 1;
+.occupationsShell::before {
+  top: -150px;
+  right: -80px;
+  width: 350px;
+  height: 350px;
+}
+
+.occupationsShell::after {
+  top: -105px;
+  right: -35px;
+  width: 260px;
+  height: 260px;
+}
+
+.occupationsGlow {
+  position: absolute;
+  right: -80px;
+  bottom: -100px;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: rgba(139, 162, 130, 0.16);
+  filter: blur(6px);
+  pointer-events: none;
+}
+
+.occupationsHeader {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(300px, 0.85fr);
+  align-items: center;
+  gap: 64px;
+  margin-bottom: 48px;
+}
+
+.occupationsTitle {
+  max-width: 680px;
+  margin: 0;
+  color: #354a36;
+  font-size: clamp(2.4rem, 4vw, 3.45rem);
+  font-weight: 700;
+  letter-spacing: -0.045em;
+  line-height: 1.04;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+.occupationsIntro {
+  padding: 4px 0 4px 24px;
+  border-left: 1px solid rgba(67, 88, 65, 0.2);
+}
+
+.occupationsIntro p {
+  margin: 0;
+  color: #596d57;
+  font-size: 0.97rem;
+  line-height: 1.7;
+}
+
+.ocupacionesGrid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.occupationCard {
+  display: flex;
+  min-width: 0;
+  min-height: 326px;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 22px;
+  overflow: hidden;
+  border: 1px solid rgba(83, 107, 80, 0.11);
+  border-radius: 26px;
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: 0 12px 30px rgba(69, 91, 66, 0.06);
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.occupationCard:nth-child(3n + 2) {
+  background: rgba(245, 250, 244, 0.82);
+}
+
+.occupationCard:nth-child(4),
+.occupationCard:nth-child(9) {
+  background: rgba(232, 240, 229, 0.82);
+}
+
+.occupationCard:hover {
+  z-index: 2;
+  border-color: rgba(94, 122, 91, 0.3);
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 20px 45px rgba(69, 91, 66, 0.13);
+  transform: translateY(-6px);
+}
+
+.occupationCardTop {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 34px;
+}
+
+.occupationIcon {
+  display: grid;
+  width: 48px;
+  height: 48px;
+  flex: 0 0 48px;
+  place-items: center;
+  border-radius: 15px;
+  background: #82977b;
+  box-shadow: 0 8px 18px rgba(82, 107, 79, 0.18);
+  color: #fff;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.occupationIcon svg {
+  width: 23px;
+  height: 23px;
+}
+
+.occupationCard:hover .occupationIcon {
+  background: #637c60;
+  transform: rotate(-4deg) scale(1.06);
 }
 
 .cardNumber {
-  font-size: 3.5rem;
+  color: rgba(66, 88, 64, 0.3);
+  font-size: 0.78rem;
   font-weight: 800;
-  color: var(--bg-color);
-  position: absolute;
-  top: -10px;
-  left: 10px;
-  z-index: 1;
-  opacity: 0.8;
-  -webkit-text-stroke: 1px var(--accent);
-  transition: all 0.3s ease;
-}
-
-.card:hover .cardNumber {
-  color: var(--accent);
-  opacity: 0.1;
-  transform: scale(1.5) translate(10px, 10px);
+  letter-spacing: 0.12em;
 }
 
 .cardContent {
-  position: relative;
-  z-index: 2;
+  min-width: 0;
+}
+
+.cardLabelSlot {
+  min-height: 1.15rem;
+  margin-bottom: 7px;
+}
+
+.cardLabel {
+  display: block;
+  color: #80907d;
+  font-size: 0.63rem;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
 }
 
 .cardTitle {
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: var(--text-dark);
-  margin-bottom: 12px;
+  min-height: 2.4em;
+  margin-bottom: 9px;
+  color: #354a36;
+  font-size: 1.02rem;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+  text-transform: none;
+  text-wrap: balance;
 }
 
 .cardDesc {
-  font-size: 0.95rem;
-  color: var(--text-light);
+  color: #687966;
+  font-size: 0.82rem;
+  line-height: 1.55;
 }
 
 .rehabSection {
@@ -349,6 +480,85 @@
   font-size: 1.1rem;
   font-weight: 600;
   color: var(--text-dark);
+}
+
+.cognitiveSection {
+  scroll-margin-top: 82px;
+}
+
+.cognitivePanel {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.72fr) minmax(0, 1.28fr);
+  align-items: center;
+  gap: 54px;
+  width: min(1160px, calc(100vw - 48px));
+  margin-left: 50%;
+  padding: 58px;
+  border: 1px solid rgba(94, 122, 91, 0.12);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(232, 241, 229, 0.94));
+  box-shadow: 0 28px 70px rgba(66, 88, 64, 0.11);
+  transform: translateX(-50%);
+}
+
+.cognitiveIntro {
+  min-width: 0;
+}
+
+.cognitiveImage {
+  width: 136px;
+  margin-bottom: 28px;
+}
+
+.cognitiveImage img {
+  display: block;
+  width: 100%;
+  height: auto;
+  mix-blend-mode: multiply;
+  opacity: 0.8;
+}
+
+.cognitiveTitle {
+  margin-bottom: 16px;
+  font-size: clamp(2rem, 3.2vw, 3rem);
+  letter-spacing: -0.035em;
+  line-height: 1.06;
+  text-align: left;
+}
+
+.cognitiveSubtitle {
+  max-width: none;
+  margin: 0;
+  text-align: left;
+}
+
+.cognitiveList {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 0;
+}
+
+.cognitiveItem {
+  min-height: 88px;
+  gap: 14px;
+  padding: 14px 18px;
+  border: 1px solid rgba(94, 122, 91, 0.1);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.cognitiveItem:hover {
+  transform: translateY(-3px);
+}
+
+.cognitiveItem .rehabIcon {
+  width: 44px;
+  height: 44px;
+}
+
+.cognitiveItem .rehabText {
+  font-size: 0.9rem;
+  line-height: 1.35;
 }
 
 .bookingSection {
@@ -440,19 +650,66 @@
   margin: 16px 0;
 }
 
+.bookingPlaceCarousel {
+  position: relative;
+  margin-top: 18px;
+}
+
 .bookingPlaceImage {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 10;
-  margin-top: 18px;
+  aspect-ratio: 4 / 3;
   overflow: hidden;
   border-radius: 18px;
   background: #eef4ec;
   box-shadow: 0 10px 24px rgba(94, 122, 91, 0.12);
 }
 
+.bookingPlaceSlide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.65s ease;
+}
+
+.bookingPlaceSlideActive {
+  opacity: 1;
+}
+
 .bookingPlacePhoto {
   object-fit: cover;
+  object-position: center;
+}
+
+.bookingPlaceDots {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  z-index: 2;
+  display: flex;
+  gap: 6px;
+  padding: 5px 7px;
+  border-radius: 999px;
+  background: rgba(48, 65, 47, 0.42);
+  backdrop-filter: blur(5px);
+  transform: translateX(-50%);
+}
+
+.bookingPlaceDot {
+  width: 7px;
+  height: 7px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.52);
+  cursor: pointer;
+  transition: width 0.25s ease, border-radius 0.25s ease, background 0.25s ease;
+}
+
+.bookingPlaceDotActive {
+  width: 18px;
+  border-radius: 999px;
+  background: #fff;
 }
 
 .bookingPlace h2 {
@@ -655,24 +912,70 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 18px;
   }
+
+  .occupationsShell {
+    padding: 58px 44px 48px;
+  }
+
+  .occupationsHeader {
+    gap: 42px;
+  }
+
+  .ocupacionesGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .cognitivePanel {
+    grid-template-columns: 1fr;
+    gap: 34px;
+    padding: 44px;
+  }
+
+  .cognitiveIntro {
+    display: grid;
+    grid-template-columns: 120px minmax(0, 1fr);
+    align-items: center;
+    gap: 28px;
+  }
+
+  .cognitiveImage {
+    width: 120px;
+    margin-bottom: 0;
+  }
 }
 
 @media (max-width: 768px) {
+  .navbar {
+    padding: 11px 0;
+  }
+
   .navContainer {
-    gap: 12px 14px;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    gap: 18px;
+    padding: 0 14px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .navContainer::-webkit-scrollbar {
+    display: none;
   }
 
   .navItem {
-    font-size: 0.78rem;
+    flex: 0 0 auto;
+    font-size: 0.68rem;
+    white-space: nowrap;
   }
 
   .hero {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
-    gap: 32px;
+    gap: 22px;
     justify-content: center;
+    min-height: 0;
     text-align: center;
-    padding-top: 145px;
+    padding: 84px 0 18px;
   }
 
   .heroContent {
@@ -696,16 +999,32 @@
   }
   
   .heroContent h1 {
-    font-size: 1.9rem;
-    line-height: 1.2;
+    margin-bottom: 10px;
+    font-size: 1.55rem;
+    line-height: 1.18;
   }
 
   .heroContent h2 {
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
 
   .heroContent h3 {
-    font-size: 0.9rem;
+    font-size: 0.75rem;
+  }
+
+  .heroContent p {
+    margin-bottom: 12px;
+    font-size: 0.88rem;
+    line-height: 1.55;
+  }
+
+  .heroContent ul {
+    margin-top: 12px;
+  }
+
+  .heroContent li {
+    margin-bottom: 8px;
+    font-size: 0.84rem;
   }
   
   .heroContent li::before {
@@ -717,18 +1036,255 @@
     padding-left: 0;
   }
 
+  .heroBookingButton {
+    margin-bottom: 12px;
+    padding: 8px 15px;
+    font-size: 0.69rem;
+  }
+
+  .heroCarousel,
+  .heroPortrait {
+    width: min(78vw, 280px);
+    border-radius: 18px;
+    animation: none;
+  }
+
+  .bubblesContainer {
+    gap: 16px;
+    margin-top: 24px;
+  }
+
   .bubble {
-    padding: 20px;
-    border-radius: 30px;
+    padding: 16px 18px;
+    border-width: 1px;
+    border-radius: 22px;
+    font-size: 0.86rem;
+    line-height: 1.5;
+  }
+
+  .bubbleArrow {
+    margin: -8px 0;
+    font-size: 1.7rem;
+  }
+
+  .occupationsSection {
+    padding-block: 32px;
+    scroll-margin-top: 54px;
+  }
+
+  .occupationsShell {
+    width: calc(100vw - 20px);
+    padding: 27px 14px 14px;
+    border-radius: 28px;
+    box-shadow: 0 24px 55px rgba(66, 88, 64, 0.11);
+  }
+
+  .occupationsShell::before {
+    top: -145px;
+    right: -130px;
+    width: 300px;
+    height: 300px;
+  }
+
+  .occupationsShell::after {
+    display: none;
+  }
+
+  .occupationsGlow {
+    right: -140px;
+    bottom: 8%;
+  }
+
+  .occupationsHeader {
+    display: block;
+    margin-bottom: 22px;
+  }
+
+  .occupationsTitle {
+    max-width: 460px;
+    font-size: clamp(1.65rem, 7.7vw, 2.1rem);
+    letter-spacing: -0.045em;
+    line-height: 1.06;
+  }
+
+  .occupationsIntro {
+    margin-top: 16px;
+    padding: 15px 0 0;
+    border-top: 1px solid rgba(67, 88, 65, 0.16);
+    border-left: 0;
+  }
+
+  .occupationsIntro p {
+    font-size: 0.8rem;
+    line-height: 1.55;
+  }
+
+  .ocupacionesGrid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .occupationCard {
+    display: grid;
+    grid-template-columns: 40px minmax(0, 1fr);
+    gap: 12px;
+    min-height: 0;
+    padding: 13px;
+    border-radius: 18px;
+  }
+
+  .occupationCardTop {
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+  }
+
+  .occupationIcon {
+    width: 40px;
+    height: 40px;
+    flex-basis: 40px;
+    border-radius: 13px;
+  }
+
+  .occupationIcon svg {
+    width: 19px;
+    height: 19px;
+  }
+
+  .cardNumber {
+    font-size: 0.64rem;
+  }
+
+  .cardContent {
+    align-self: center;
+  }
+
+  .cardLabelSlot {
+    min-height: 0.85rem;
+    margin-bottom: 4px;
+  }
+
+  .cardLabel {
+    font-size: 0.54rem;
+  }
+
+  .cardTitle {
+    min-height: 0;
+    margin-bottom: 6px;
+    font-size: 0.88rem;
+  }
+
+  .cardDesc {
+    font-size: 0.72rem;
+    line-height: 1.45;
   }
   
   .rehabSection {
-    padding: 30px 20px;
+    margin-bottom: 0;
+    padding: 22px 14px;
+    border-radius: 26px;
+  }
+
+  .rehabSection img {
+    width: 100px !important;
+  }
+
+  .rehabList {
+    gap: 10px;
+    margin-top: 24px;
   }
   
   .rehabItem {
-    padding: 16px 20px;
-    border-radius: 20px;
+    gap: 12px;
+    padding: 12px 14px;
+    border-radius: 17px;
+  }
+
+  .rehabIcon {
+    width: 42px;
+    height: 42px;
+  }
+
+  .rehabIcon svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .rehabText {
+    font-size: 0.82rem;
+    line-height: 1.42;
+  }
+
+  .cognitiveSection {
+    padding-block: 32px;
+    scroll-margin-top: 54px;
+  }
+
+  .cognitivePanel {
+    display: block;
+    width: calc(100vw - 20px);
+    margin-left: 50%;
+    padding: 25px 14px 14px;
+    border-radius: 28px;
+  }
+
+  .cognitiveIntro {
+    display: grid;
+    grid-template-columns: 74px minmax(0, 1fr);
+    gap: 14px;
+    margin-bottom: 22px;
+  }
+
+  .cognitiveImage {
+    width: 74px;
+  }
+
+  .cognitiveImage img {
+    width: 74px !important;
+  }
+
+  .cognitiveTitle {
+    margin-bottom: 8px;
+    font-size: 1.12rem;
+    letter-spacing: -0.02em;
+    line-height: 1.12;
+  }
+
+  .cognitiveSubtitle {
+    font-size: 0.76rem;
+    line-height: 1.4;
+  }
+
+  .cognitiveList {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+    margin: 0;
+  }
+
+  .cognitiveItem {
+    min-height: 108px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 9px;
+    padding: 12px;
+    border-radius: 17px;
+  }
+
+  .cognitiveItem .rehabIcon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .cognitiveItem .rehabIcon svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .cognitiveItem .rehabText {
+    font-size: 0.72rem;
+    line-height: 1.35;
   }
 
   .bookingSection {
@@ -760,6 +1316,46 @@
     flex-direction: column;
     gap: 7px;
   }
+
+  .footer {
+    margin-top: 24px;
+    padding: 46px 0 24px;
+  }
+
+  .contactTitle {
+    margin-bottom: 24px;
+    font-size: 1.55rem;
+  }
+
+  .contactInfo {
+    display: grid;
+    gap: 10px;
+    margin-bottom: 30px;
+  }
+
+  .contactLink {
+    justify-content: center;
+    padding: 9px 14px;
+    font-size: 0.84rem;
+  }
+
+  .credits {
+    margin-top: 30px;
+    font-size: 0.76rem;
+  }
+}
+
+@media (hover: none) {
+  .occupationCard:hover {
+    border-color: rgba(83, 107, 80, 0.11);
+    box-shadow: 0 12px 30px rgba(69, 91, 66, 0.06);
+    transform: none;
+  }
+
+  .occupationCard:hover .occupationIcon {
+    background: #82977b;
+    transform: none;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -773,6 +1369,10 @@
   }
 
   .carouselSlide {
+    transition: none;
+  }
+
+  .bookingPlaceSlide {
     transition: none;
   }
 }
