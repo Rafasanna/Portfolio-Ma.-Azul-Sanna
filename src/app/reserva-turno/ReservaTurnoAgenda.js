@@ -1,106 +1,48 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import styles from "../page.module.css";
+import { groupTurnos, parseCSV } from "./turnos";
 
 const WHATSAPP_NUMBER = "5493446525525";
 const DEFAULT_SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRj9qBH7xTjjcdEQVdffOF0nKm731jXJGAKmbnpD426LaP3uDKo_HRnUPRnGHvZIIEZ-JEjNKKqtm3j/pub?gid=0&single=true&output=csv";
 const SHEET_CSV_URL = process.env.NEXT_PUBLIC_TURNOS_CSV_URL || DEFAULT_SHEET_CSV_URL;
 
-function normalizeHeader(header) {
-  return header
-    .replace(/^\uFEFF/, "")
-    .trim()
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/\s+/g, "_");
-}
+const PLACE_IMAGES = {
+  ceniRecepcion: {
+    src: "/carousel/ceni-recepcion.jpeg",
+    alt: "Recepción de CENI Neurología Infantil",
+    objectPosition: "center 43%",
+  },
+  tesai: {
+    src: "/carousel/tesai-exterior.jpeg",
+    alt: "Exterior de TESAI Centro Médico",
+    objectPosition: "center 43%",
+  },
+  otrosCaminos: {
+    src: "/carousel/otros-caminos-recepcion.jpeg",
+    alt: "Recepción de Otros Caminos",
+    objectPosition: "center 40%",
+  },
+};
 
-function parseCsvLine(line) {
-  const values = [];
-  let current = "";
-  let insideQuotes = false;
+function getPlaceImage(lugar) {
+  const lugarNormalizado = lugar.trim().toLowerCase();
 
-  for (let index = 0; index < line.length; index += 1) {
-    const char = line[index];
-    const nextChar = line[index + 1];
-
-    if (char === '"' && insideQuotes && nextChar === '"') {
-      current += '"';
-      index += 1;
-    } else if (char === '"') {
-      insideQuotes = !insideQuotes;
-    } else if (char === "," && !insideQuotes) {
-      values.push(current.trim());
-      current = "";
-    } else {
-      current += char;
-    }
+  if (lugarNormalizado.includes("ceni")) {
+    return PLACE_IMAGES.ceniRecepcion;
   }
 
-  values.push(current.trim());
-
-  return values;
-}
-
-function parseCSV(text) {
-  const lines = text
-    .replace(/\r/g, "")
-    .split("\n")
-    .map((line) => line.trim())
-    .filter(Boolean);
-
-  const [headerLine, ...rows] = lines;
-
-  if (!headerLine) {
-    return [];
+  if (lugarNormalizado.includes("tesai")) {
+    return PLACE_IMAGES.tesai;
   }
 
-  const headers = parseCsvLine(headerLine).map(normalizeHeader);
+  if (lugarNormalizado.includes("otros caminos")) {
+    return PLACE_IMAGES.otrosCaminos;
+  }
 
-  return rows.map((row) => {
-    const values = parseCsvLine(row);
-
-    return headers.reduce((item, header, index) => {
-      item[header] = values[index] ?? "";
-      return item;
-    }, {});
-  });
-}
-
-function groupTurnos(rows) {
-  const grouped = new Map();
-
-  rows.forEach((row) => {
-    if (!row.dia || !row.lugar || !row.hora_inicio || !row.hora_fin) {
-      return;
-    }
-
-    const direccion = row.direccion || "Dirección a confirmar";
-    const maps = row.maps || "";
-    const groupKey = `${row.dia}__${row.lugar}__${direccion}`;
-
-    if (!grouped.has(groupKey)) {
-      grouped.set(groupKey, {
-        dia: row.dia,
-        lugar: row.lugar,
-        direccion,
-        maps,
-        horarios: [],
-      });
-    }
-
-    const estadoNormalizado = (row.estado || "").trim().toLowerCase();
-
-    grouped.get(groupKey).horarios.push({
-      horaInicio: row.hora_inicio,
-      horaFin: row.hora_fin,
-      estado: estadoNormalizado === "disponible" ? "disponible" : "reservado",
-    });
-  });
-
-  return Array.from(grouped.values());
+  return null;
 }
 
 function addCacheBuster(url) {
@@ -128,7 +70,9 @@ export default function ReservaTurnoAgenda() {
           throw new Error("Falta configurar la URL pública del CSV de Google Sheets.");
         }
 
-        const response = await fetch(addCacheBuster(SHEET_CSV_URL));
+        const response = await fetch(addCacheBuster(SHEET_CSV_URL), {
+          cache: "no-store",
+        });
 
         if (!response.ok) {
           throw new Error("No se pudo leer el CSV publicado.");
@@ -180,62 +124,72 @@ export default function ReservaTurnoAgenda() {
 
   return (
     <div className={styles.bookingGrid}>
-      {turnos.map((diaTurnos) => (
-        <article key={`${diaTurnos.dia}-${diaTurnos.lugar}`} className={styles.bookingCard}>
-          <div className={styles.bookingDayHeader}>
-            <span className={styles.bookingDay}>{diaTurnos.dia}</span>
-            <span className={styles.bookingAvailableCount}>
-              {diaTurnos.horarios.filter((turno) => turno.estado === "disponible").length} disponibles
-            </span>
-          </div>
+      {turnos.map((diaTurnos) => {
+        const placeImage = getPlaceImage(diaTurnos.lugar);
 
-          <div className={styles.bookingPlace}>
-            <h2>{diaTurnos.lugar}</h2>
-            <p>{diaTurnos.direccion}</p>
-            {diaTurnos.maps ? (
-              <a
-                className={styles.mapButton}
-                href={diaTurnos.maps}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Ver ubicación
-              </a>
-            ) : (
-              <span className={`${styles.mapButton} ${styles.mapButtonDisabled}`}>
-                Ubicación a confirmar
+        return (
+          <article key={`${diaTurnos.dia}-${diaTurnos.lugar}`} className={styles.bookingCard}>
+            <div className={styles.bookingDayHeader}>
+              <span className={styles.bookingDay}>{diaTurnos.dia}</span>
+              <span className={styles.bookingAvailableCount}>
+                {diaTurnos.horarios.length} {diaTurnos.horarios.length === 1 ? "disponible" : "disponibles"}
               </span>
-            )}
-          </div>
+            </div>
 
-          <div className={styles.scheduleList} aria-label={`Horarios del día ${diaTurnos.dia}`}>
-            {diaTurnos.horarios.map((turno) => (
-              turno.estado === "reservado" ? (
-                <span
-                  key={`${turno.horaInicio}-${turno.horaFin}`}
-                  className={`${styles.scheduleSlot} ${styles.scheduleSlotReserved}`}
-                  aria-disabled="true"
-                >
-                  <span className={styles.scheduleTime}>{turno.horaInicio} a {turno.horaFin}</span>
-                  <span className={styles.scheduleStatus}>Reservado</span>
-                </span>
-              ) : (
+            {placeImage && (
+              <div className={styles.bookingPlaceImage}>
+                <Image
+                  src={placeImage.src}
+                  alt={placeImage.alt}
+                  fill
+                  sizes="(max-width: 768px) calc(100vw - 88px), (max-width: 1000px) 45vw, 320px"
+                  className={styles.bookingPlacePhoto}
+                  style={{ objectPosition: placeImage.objectPosition }}
+                />
+              </div>
+            )}
+
+            <div className={styles.bookingPlace}>
+              <h2>{diaTurnos.lugar}</h2>
+              <p>{diaTurnos.direccion}</p>
+              {diaTurnos.maps ? (
                 <a
-                  key={`${turno.horaInicio}-${turno.horaFin}`}
-                  className={`${styles.scheduleSlot} ${styles.scheduleSlotAvailable}`}
-                  href={getWhatsappTurnoUrl(diaTurnos.dia, turno.horaInicio, turno.horaFin, diaTurnos.lugar)}
+                  className={styles.mapButton}
+                  href={diaTurnos.maps}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label={`Consultar turno del ${diaTurnos.dia} de ${turno.horaInicio} a ${turno.horaFin} en ${diaTurnos.lugar}`}
                 >
-                  <span className={styles.scheduleTime}>{turno.horaInicio} a {turno.horaFin}</span>
-                  <span className={styles.scheduleStatus}>Disponible</span>
+                  Ver ubicación
                 </a>
-              )
-            ))}
-          </div>
-        </article>
-      ))}
+              ) : (
+                <span className={`${styles.mapButton} ${styles.mapButtonDisabled}`}>
+                  Ubicación a confirmar
+                </span>
+              )}
+            </div>
+
+            <div className={styles.scheduleList} aria-label={`Horarios del día ${diaTurnos.dia}`}>
+              {diaTurnos.horarios.length > 0 ? (
+                diaTurnos.horarios.map((turno) => (
+                  <a
+                    key={`${turno.horaInicio}-${turno.horaFin}`}
+                    className={`${styles.scheduleSlot} ${styles.scheduleSlotAvailable}`}
+                    href={getWhatsappTurnoUrl(diaTurnos.dia, turno.horaInicio, turno.horaFin, diaTurnos.lugar)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Consultar turno del ${diaTurnos.dia} de ${turno.horaInicio} a ${turno.horaFin} en ${diaTurnos.lugar}`}
+                  >
+                    <span className={styles.scheduleTime}>{turno.horaInicio} a {turno.horaFin}</span>
+                    <span className={styles.scheduleStatus}>Disponible</span>
+                  </a>
+                ))
+              ) : (
+                <p className={styles.noAvailableSlots}>Sin turnos disponibles</p>
+              )}
+            </div>
+          </article>
+        );
+      })}
     </div>
   );
 }

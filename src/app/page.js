@@ -1,4 +1,5 @@
 import Link from "next/link";
+import HeroCarousel from "./HeroCarousel";
 import styles from "./page.module.css";
 
 export default function Home() {
@@ -56,33 +57,31 @@ export default function Home() {
         {/* HERO SECTION */}
         <section id="quien-soy" className={`${styles.hero} fade-in delay-1`}>
           <div className={styles.heroContent}>
-            <h1>Hola! Mi nombre es <br />Ma. Azul Sanna</h1>
-            <h2 style={{ marginBottom: "0.2rem" }}>Lic. en Terapia Ocupacional</h2>
-            <h3 style={{ marginTop: 0, marginBottom: "1.5rem" }}>ᴍ.ɴ 𝟧𝟤𝟫𝟫 ᴍ.ᴘ 𝟣𝟩𝟥𝟣𝟧</h3>
-            <p>
-              Creé este espacio para acercar la profesión a quienes la necesitan y también a quienes todavía no la conocen.
+            <div className={styles.heroIntro}>
+              <h1>Hola! Mi nombre es <br />Ma. Azul Sanna</h1>
+              <h2 style={{ marginBottom: "0.2rem" }}>Lic. en Terapia Ocupacional</h2>
+              <h3 style={{ marginTop: 0, marginBottom: "1.5rem" }}>ᴍ.ɴ 𝟧𝟤𝟫𝟫 ᴍ.ᴘ 𝟣𝟩𝟥𝟣𝟧</h3>
+            </div>
+            <div className={styles.heroDescription}>
+              <p>
+                Creé este espacio para acercar la profesión a quienes la necesitan y también a quienes todavía no la conocen.
 
-            </p>
-            <p>
-              Trabajo de manera individual y grupal en consultorio, acompañando cada proceso para que puedas lograr mayor autonomía e independencia en las actividades de la vida diaria.
-            </p>
-            <ul>
-              <li>Terapia de mano </li>
-              <li>Desafios del aprendizaje</li>
-              <li>Estimulación cognitiva</li>
-            </ul>
+              </p>
+              <p>
+                Trabajo de manera individual y grupal en consultorio, acompañando cada proceso para que puedas lograr mayor autonomía e independencia en las actividades de la vida diaria.
+              </p>
+              <ul>
+                <li>Terapia de mano </li>
+                <li>Desafios del aprendizaje</li>
+                <li>Estimulación cognitiva</li>
+              </ul>
+            </div>
           </div>
           <div className={styles.heroImageContainer}>
             <Link href="/reserva-turno" className={styles.heroBookingButton}>
               Reservá turno
             </Link>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/perfil.jpg"
-              alt="Ma. Azul Sanna"
-              className={styles.profileImage}
-              style={{ width: "100%", maxWidth: "400px", height: "auto" }}
-            />
+            <HeroCarousel />
           </div>
         </section>
 
