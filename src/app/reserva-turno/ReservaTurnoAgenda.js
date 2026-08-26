@@ -13,12 +13,17 @@ const SHEET_CSV_URL = process.env.NEXT_PUBLIC_TURNOS_CSV_URL || DEFAULT_SHEET_CS
 const PLACE_IMAGES = {
   ceni: [
     {
-      src: "/carousel/ceni-recepcion.jpeg",
+      src: "/carousel/ceni-reserva-horizontal.jpeg",
       alt: "Recepción de CENI Neurología Infantil",
+      aspectRatio: "1280 / 810",
+      fit: "contain",
     },
     {
       src: "/carousel/ceni-consultorio.jpeg",
       alt: "Consultorio de Terapia Ocupacional en CENI",
+      aspectRatio: "1280 / 810",
+      fit: "cover",
+      objectPosition: "center 64%",
     },
   ],
   tesai: [
@@ -33,12 +38,17 @@ const PLACE_IMAGES = {
   ],
   otrosCaminos: [
     {
-      src: "/carousel/otros-caminos-recepcion.jpeg",
+      src: "/carousel/otros-caminos-reserva-horizontal.jpeg",
       alt: "Recepción de Otros Caminos",
+      aspectRatio: "1280 / 720",
+      fit: "contain",
     },
     {
       src: "/carousel/otros-caminos-consultorio.jpeg",
       alt: "Consultorio de Terapia Ocupacional en Otros Caminos",
+      aspectRatio: "1280 / 720",
+      fit: "cover",
+      objectPosition: "center 56%",
     },
   ],
 };
@@ -75,6 +85,7 @@ function getWhatsappTurnoUrl(dia, horaInicio, horaFin, lugar) {
 
 function PlaceCarousel({ images, placeName }) {
   const [activeImage, setActiveImage] = useState(0);
+  const activePlaceImage = images[activeImage];
 
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -97,7 +108,10 @@ function PlaceCarousel({ images, placeName }) {
       aria-roledescription="carrusel"
       aria-label={`Fotos de ${placeName}`}
     >
-      <div className={styles.bookingPlaceImage}>
+      <div
+        className={styles.bookingPlaceImage}
+        style={activePlaceImage.aspectRatio ? { aspectRatio: activePlaceImage.aspectRatio } : undefined}
+      >
         {images.map((placeImage, imageIndex) => (
           <div
             key={placeImage.src}
@@ -112,6 +126,10 @@ function PlaceCarousel({ images, placeName }) {
               fill
               sizes="(max-width: 768px) calc(100vw - 88px), (max-width: 1000px) 45vw, 280px"
               className={styles.bookingPlacePhoto}
+              style={placeImage.fit ? {
+                objectFit: placeImage.fit,
+                objectPosition: placeImage.objectPosition || "center",
+              } : undefined}
             />
           </div>
         ))}
